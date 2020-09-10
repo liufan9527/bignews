@@ -30,24 +30,26 @@ $(function () {
 
 
     })
-    var data = {
-        username: $('#form_reg [name=username]').val(),
-        password: $('#form_reg [name=password]').val()
-    }
-    $('#form_reg').on('submit', data, function (e) {
+
+    $('#form_reg').on('submit', function (e) {
+        var data = {
+            username: $('#form_reg [name=username]').val(),
+            password: $('#form_reg [name=password]').val()
+        }
         e.preventDefault()
-        $.post('http://ajax.frontend.itheima.net/api/reguser', {
+        $.post('http://ajax.frontend.itheima.net/api/reguser',
 
-        }, function (res) {
+            data,
+            function (res) {
 
-            if (res.status !== 0) {
-                return layer.msg(res.message);
-            }
-            layer.msg('注册成功');
+                if (res.status !== 0) {
+                    return layer.msg(res.message);
+                }
+                layer.msg('注册成功');
 
-            //模拟人点击登录
-            $('#link_login').click()
-        })
+                //模拟人点击登录
+                $('#link_login').click()
+            })
     })
 
 
