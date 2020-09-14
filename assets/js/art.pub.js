@@ -100,6 +100,7 @@ $(function () {
                     layer.msg('发布新文章成功')
                     //成功后跳转到文章列表页面
                     location.href = '/article/art.list.html'
+                    window.parent.$('.liebiao').click()
                 }
             })
 
