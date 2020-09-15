@@ -106,8 +106,7 @@ $(function () {
     var len = $(".btn-delete").length;
     console.log(len);
     layer.confirm(
-      "确定删除?",
-      {
+      "确定删除?", {
         icon: 3,
         title: "提示",
       },
@@ -138,4 +137,23 @@ $(function () {
       }
     );
   });
+
+
+  //编辑按钮绑定点击事件
+
+  $('tbody').on('click', '.bianjiBtn', function () {
+    var id = $(this).attr('data-id')
+    $.ajax({
+      method: 'GET',
+      url: '/my/article/' + id,
+      success: function (res) {
+        if (res.status !== 0) {
+          return layer.msg('获取文章失败')
+        }
+
+        localStorage.setItem('data', JSON.stringify(res.data))
+        location.href = '/article/art_repub.html'
+      }
+    })
+  })
 });
